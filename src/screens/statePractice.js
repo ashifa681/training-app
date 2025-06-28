@@ -1,37 +1,34 @@
 
-import { useState } from 'react';
+import React , { useState } from 'react';
 import { StyleSheet, TextInput, View, Text, Button } from 'react-native';
 
 export default function StatePractice() {
-  const [Email, setEmail]= (useState)
-   const [Password, setPassword]= (useState )
-   const [Username, setUsername]=( useState)
+
+   const[Email, setEmail] = useState()
+   const[Password, setPassword]= useState ()
+   const[Username, setUsername]= useState()
   return (
     <View style={styles.container}>
-      <Text>email</Text>
-      <Text>Password</Text>
-      <Text>Username</Text>
+      <Text> 'Email </Text>
+      <Text> Password </Text>
+      <Text> Username </Text>
 
       <TextInput
-       style={styles.input}
+       style={styles.input} value={Email}
        placeholder="enter Email"
-       onChangeText={setEmail}
-       
-       
-       />
+       onChangeText={setEmail}/>
       <TextInput
-       style={styles.input}
-       placeholder="enter Password"
-       onChangeText={setPassword}
-       
-       
-       />
+       style={styles.input}value={Password}
+       placeholder="enter Password" 
+       onChangeText={setPassword} />
       <TextInput
-       style={styles.input}
+       style={styles.input}value={Username}
        placeholder="enter Username"
-       onChangeText={setUsername}
-        />
-       <Button title="Login"></Button>
+       onChangeText={setUsername} />
+
+       <Button title="Login" />
+
+      
     </View>
   );
 }
@@ -51,5 +48,14 @@ const styles = StyleSheet.create({
     width: '80%',
     backgroundColor: 'white',
     borderRadius: 5,
+
+    label: {
+  alignSelf: 'flex-start',
+  marginLeft: 40,
+  fontSize: 16,
+  fontWeight: 'bold',
+  color: '#333',
+}
+
   },
 });
