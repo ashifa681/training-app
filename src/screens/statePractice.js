@@ -1,34 +1,77 @@
+import React, { useState } from 'react';
+import { View, Image, StyleSheet, Text, Pressable } from 'react-native';
 
-import React , { useState } from 'react';
-import { StyleSheet, TextInput, View, Text, Button } from 'react-native';
+export default function StatePractice({ navigation }) {
+  const [selectedButton, setSelectedButton] = useState(null);
 
-export default function StatePractice() {
-
-   const[Email, setEmail] = useState()
-   const[Password, setPassword]= useState ()
-   const[Username, setUsername]= useState()
   return (
     <View style={styles.container}>
-      <Text> 'Email </Text>
-      <Text> Password </Text>
-      <Text> Username </Text>
+      <Image style={styles.image} source={require('../../assets/cloud.png')} />
 
-      <TextInput
-       style={styles.input} value={Email}
-       placeholder="enter Email"
-       onChangeText={setEmail}/>
-      <TextInput
-       style={styles.input}value={Password}
-       placeholder="enter Password" 
-       onChangeText={setPassword} />
-      <TextInput
-       style={styles.input}value={Username}
-       placeholder="enter Username"
-       onChangeText={setUsername} />
+      <Text style={styles.helloText}>Hello!</Text>
+      <Text style={styles.subText}>Welcome to the cloud resources</Text>
 
-       <Button title="Login" />
+      <View style={styles.buttonContainer}>
+        <Pressable
+          style={[
+            styles.customButton,
+            selectedButton === 'login' && styles.buttonPressed,
+          ]}
+          onPress={() => {
+            setSelectedButton('login');
+            navigation.navigate('LoginScreen'); 
+          }}
+        >
+          <Text
+            style={[
+              styles.buttonText,
+              selectedButton === 'login' && styles.buttonTextPressed,
+            ]}
+          >
+            Login
+          </Text>
+        </Pressable>
 
-      
+        <View style={{ height: 20 }} />
+
+        <Pressable
+  style={[
+    styles.customButton,
+    selectedButton === 'signin' && styles.buttonPressed,
+  ]}
+  onPress={() => {
+    setSelectedButton('signin');
+    alert('Sign In Pressed');
+  }}
+>
+  <Text
+    style={[
+      styles.buttonText,
+      selectedButton === 'signin' && styles.buttonTextPressed,
+    ]}
+  >
+    Sign In
+  </Text>
+</Pressable>
+
+      </View>
+
+      <Text style={styles.signUpText}>Sign up using</Text>
+
+      <View style={styles.iconRow}>
+        <Image
+          source={require('../../assets/linkedin.png')}
+          style={styles.iconImage}
+        />
+        <Image
+          source={require('../../assets/image.png')}
+          style={styles.iconImage}
+        />
+        <Image
+          source={require('../../assets/chrome.png')}
+          style={styles.iconImage}
+        />
+      </View>
     </View>
   );
 }
@@ -36,26 +79,66 @@ export default function StatePractice() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'plum',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 20,
-    paddingHorizontal:20,
+    paddingBottom: 40,
   },
-  input: {
-    borderWidth: 1,
-    padding: 10,
-    width: '80%',
+  image: {
+    width: 200,
+    height: 200,
+    marginBottom: 90,
+  },
+  helloText: {
+    fontWeight: 'bold',
+    fontSize: 25,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  subText: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  buttonContainer: {
+    width: 250,
+    alignItems: 'center',
+  },
+  customButton: {
     backgroundColor: 'white',
-    borderRadius: 5,
-
-    label: {
-  alignSelf: 'flex-start',
-  marginLeft: 40,
-  fontSize: 16,
-  fontWeight: 'bold',
-  color: '#333',
-}
-
+    borderColor: '#71717A',
+    borderWidth: 2,
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 12,
+    alignItems: 'center',
+    width: '100%',
+  },
+  buttonPressed: {
+    backgroundColor: '#71717A',
+  },
+  buttonText: {
+    color: '#71717A',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  buttonTextPressed: {
+    color: 'white',
+  },
+  signUpText: {
+    fontSize: 14,
+    color: '#555',
+    marginTop: 40,
+    marginBottom: 10,
+  },
+  iconRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 20,
+  },
+  iconImage: {
+    width: 30,
+    height: 30,
   },
 });
